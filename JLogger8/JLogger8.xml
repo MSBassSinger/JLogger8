@@ -1,0 +1,1151 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JLogger8</name>
+    </assembly>
+    <members>
+        <member name="T:Jeff.Jones.JLogger8.DataAccessLayer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DataAccessLayer.#ctor(System.String,System.String,System.Boolean,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Constructor to populate the instance.
+            </summary>
+            <param name="server"></param>
+            <param name="defaultDB"></param>
+            <param name="useAuthentication"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="connectionTimeout"></param>
+            <param name="commandTimeout"></param>
+            <param name="connectRetryCount"></param>
+            <param name="connectRetryInterval"></param>
+            <param name="applicationName"></param>
+            <param name="workstationID"></param>
+            <param name="portNumber"></param>
+            <param name="connectionPooling"></param>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DataAccessLayer.BuildConnectionString">
+            <summary>
+            Method to build a SQL Server connection string.
+            </summary>
+            <returns>Fully formed connection string</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DataAccessLayer.WriteDBLog(Jeff.Jones.JLogger8.DebugLogItem)">
+            <summary>
+            
+            </summary>
+            <param name="logEntry"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DataAccessLayer.CheckConnection">
+            <summary>
+            A true/false check to see if the connection can be made.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DataAccessLayer.ExecuteQuery(System.String,System.Boolean,System.Collections.Generic.List{System.Data.SqlClient.SqlParameter})">
+            <summary>
+            Method to execute a query and return data.
+            For example, query DB log table, return data for date span,
+            abd write it to a log file.
+            </summary>
+            <param name="cmd">SQL Command</param>
+            <param name="isSP">True if a stored procedure, false if not.</param>
+            <param name="sqlParams">List of parameter objects, or null if no parameters used.</param>
+            <returns>DBReturnValue instance with results and parameters that have post-execution values.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DataAccessLayer.ExecuteStatement(System.String,System.Boolean,System.Collections.Generic.List{System.Data.SqlClient.SqlParameter})">
+            <summary>
+            Asynchronous method to execute SQL that does not return a dataset.
+            </summary>
+            <param name="cmd">SQL Command</param>
+            <param name="isSP">True if a stored procedure, false if not.</param>
+            <param name="sqlParams">List of parameter objects, or null if no parameters used.</param>
+            <returns>DBReturnValue instance with results and parameters that have post-execution values.</returns>
+        </member>
+        <member name="T:Jeff.Jones.JLogger8.DebugLogItem">
+            <summary>
+            This class represents a single debug log entry.  These are used
+            as values in the debug log queue (m_dctLogQueue)
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DebugLogItem.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DebugLogItem.#ctor(Jeff.Jones.JLogger8.LOG_TYPE,System.DateTime,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Constructor to populate the item
+            </summary>
+            <param name="lngType">Type of log entry</param>
+            <param name="dtmLogDateTime">Date-Time of the log entry</param>
+            <param name="strLogMessage">Main message</param>
+            <param name="pDetailMessage">Secondary or detail message</param>
+            <param name="pExceptionData">Exception.Data information as a single string</param>
+            <param name="pStackData">Data pulled from the stack trace.</param>
+            <param name="moduleName">Module name where the log call was made.</param>
+            <param name="methodName">Method name where the log call was made.</param>
+            <param name="lineNumber">Line number of the exception or where the call was made.</param>
+            <param name="threadID">The .NET thread ID where the log call was made.</param>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.LogDateTime">
+            <summary>
+            Date-Time of the log entry
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.Type">
+            <summary>
+            Type of log entry
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.TypeDescription">
+            <summary>
+            String name of the log type (Type).
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.Message">
+            <summary>
+            Main message
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.DetailMessage">
+            <summary>
+            Secondary or detail message
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.ModuleName">
+            <summary>
+            Module name where the log call was made.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.MethodName">
+            <summary>
+            Method name where the log call was made.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.LineNumber">
+            <summary>
+            Line number of the exception or where the call was made.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.ThreadID">
+            <summary>
+            The .NET thread ID where the log call was made.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.ExceptionData">
+            <summary>
+            Exception.Data information as a single string
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DebugLogItem.StackData">
+            <summary>
+            Data pulled from the stack trace.
+            </summary>
+        </member>
+        <member name="T:Jeff.Jones.JLogger8.DBReturnValue">
+            <summary>
+            Class is used for returning multiple values after executing a SQL statement.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DBReturnValue.#ctor">
+            <summary>
+            Empty constructor.  This will initialize the backing variables for the properties.  
+            The SQLParameter list will be instantiated, and empty.
+            No dataset is passed in at construction.  It is set by the procedure executing the 
+            query in JDataAccess.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DBReturnValue.#ctor(System.Collections.Generic.List{System.Data.SqlClient.SqlParameter},System.Int32,System.String)">
+            <summary>
+            Constructor to populate the properties at construction time.
+            </summary>
+            <param name="sqlParams">SQL Parameters.  May be null.</param>
+            <param name="retCode">A return code, usually provided from a SQL call.</param>
+            <param name="errorMessage">String describing the full stack of exceptions, or "" if no exceptions.</param>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DBReturnValue.SQLParams">
+            <summary>
+            The SQL parameters to use.  If there are none, the 
+            list has zero members.  If the value is null, the 
+            list is instantiated as empty.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DBReturnValue.RetCode">
+            <summary>
+            A numeric return code to be interpreted by the caller.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DBReturnValue.ErrorMessage">
+            <summary>
+            An error message coming back from either the function called, or from SQL Server.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.DBReturnValue.Data">
+            <summary>
+            For calls that return data, the dataset goes here.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DBReturnValue.Dispose">
+            <summary>
+            Implement the IDisposable.Dispose() method
+            Developers are supposed to call this method when done with this Object.
+            There is no guarantee when or if the GC will call it, so 
+            the developer is responsible to.  GC does NOT clean up unmanaged 
+            resources, such as COM objects, so we have to clean those up, too.
+            
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DBReturnValue.Finalize">
+            <summary>
+            Explicit Finalize method.  The GC calls Finalize, if it is called.
+            There are times when the GC will fail to call Finalize, which is why it is up to 
+            the developer to call Dispose() from the consumer Object.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.DBReturnValue.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="T:Jeff.Jones.JLogger8.LOG_TYPE">
+            <summary>
+            Used to define a bitmask that describes how a log entry is handled
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Unspecified">
+            <summary>
+            Used as a default value until an assignment is made.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Flow">
+            <summary>
+            Flow messages
+            </summary>     
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Error">
+            <summary>
+            General errors
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Informational">
+            <summary>
+            Informational messages
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Warning">
+            <summary>
+            Warning messages
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.System">
+            <summary>
+            System-related information
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Performance">
+            <summary>
+            App-related performance
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.ShowModuleMethodAndLineNumber">
+            <summary>
+            Show module, method, and line number info in the debug log.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.ShowTimeOnly">
+            <summary>
+            Shows time only, not date, in the debug log.
+            Useful if debug logs are closed and a new one created on
+            the first write the next day after the log file was opened.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.HideThreadID">
+            <summary>
+            Hides the thread ID from being printed in the debug log.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Test">
+            <summary>
+            Shows test debug log statements in the log.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.IncludeStackTrace">
+            <summary>
+            Adds the stack trace to the debug log when a method exits.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.SendEmail">
+            <summary>
+            Sends an email if the flag is on
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.IncludeExceptionData">
+            <summary>
+            Sends an email if the flag is on
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Database">
+            <summary>
+            Log entry related to database operations
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Service">
+            <summary>
+            Log entry related to service operations
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Cloud">
+            <summary>
+            Log entry related to cloud operations
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Management">
+            <summary>
+            Log entry related to management concerns or operations
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Fatal">
+            <summary>
+            Log entry related to some fatal operation or state
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Network">
+            <summary>
+            Log entry related to network issue or operation
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Threat">
+            <summary>
+            Log entry related to a threat condition
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_TYPE.Startup">
+            <summary>
+            Only used by the log writer during initial startup
+            </summary>
+        </member>
+        <member name="T:Jeff.Jones.JLogger8.LOG_DESTINATION_Enum">
+            <summary>
+            Where should the logger send log entries?
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_DESTINATION_Enum.Undefined">
+            <summary>
+            Default value.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_DESTINATION_Enum.DiskFile">
+            <summary>
+            Log File intended for disk storage.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_DESTINATION_Enum.AzureStorageFile">
+            <summary>
+            log File intended for Azure storage.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_DESTINATION_Enum.Database">
+            <summary>
+            Log data intended to go to a SQL Server database.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_DESTINATION_Enum.AzureStorageQueue">
+            <summary>
+            Log data intended for placing in an Azure Storage Queue.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LOG_DESTINATION_Enum.AzureQueue">
+            <summary>
+            Log data intended for an Azure queue.
+            </summary>
+        </member>
+        <member name="T:Jeff.Jones.JLogger8.LogLevelBitset">
+            <summary>
+            The Microsoft.Extensions.Logging.LogLevel enum is not a bitset enum ([Flags]).  So this is used to provide
+            the multi-level capability of logging that is lacking in LogLevel, but remains 100% compatible with it.
+            This bitset matches the LogLevel enum used by ILogger instances.
+            
+            Using the static conversion methods in this class, the LogLevels in an array (denoting
+            what should be logged) are converted to a LogLevelBitset value (allowing low-cost comparisons before executing  
+            a logging method) to log  only those items wanted.  Since the value can be changed in real time, it allows changing  
+            the what levels of debugging to use at any time.  Fewer for normal operation, more for debugging production code
+            or during development and testing.
+            
+            Example:
+            <![CDATA[
+            1. 	 if (m_Log != null) && ((m_LogLevels & LogLevelBitset.Error) == LogLevelBitset.Error))
+            2. 	 {
+            3. 		m_Log.LogError(exUnhandled, exUnhandled.GetFullExceptionMessage(true, false));
+            4.	 }
+            ]]>
+            
+            Line 1 makes sure whatever ILogger was passed in is instantiated before calling a logging method and 
+                   if instantiated, performs a bit comparison to the desired logging levels, and 
+                   if it matches, calls the ILogger method.  If the logging level
+                   does not match, or the logger is not instantiated, then the method is never called, 
+                   saving the overhead.
+                   
+            This approach allows logging to be built in from the start at various levels, but only 
+            execute the log methods permitted by the current levels permitted.
+            
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LogLevelBitset.None">
+            <summary>
+                Not used for writing log messages. Specifies that a logging category should not
+                write any messages.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LogLevelBitset.Trace">
+            <summary>
+                Logs that contain the most detailed messages. These messages may contain sensitive
+                application data. These messages are disabled by default and should never be
+                enabled in a production environment.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LogLevelBitset.Debug">
+            <summary>
+                Logs that are used for interactive investigation during development. These logs
+                should primarily contain information useful for debugging and have no long-term
+                value.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LogLevelBitset.Information">
+            <summary>
+                Logs that track the general flow of the application. These logs should have long-term
+                value.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LogLevelBitset.Warning">
+            <summary>
+                Logs that highlight an abnormal or unexpected event in the application flow,
+                but do not otherwise cause the application execution to stop.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LogLevelBitset.Error">
+            <summary>
+                Logs that highlight when the current flow of execution is stopped due to a failure.
+                These should indicate a failure in the current activity, not an application-wide
+                failure.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.LogLevelBitset.Critical">
+            <summary>
+                Logs that describe an unrecoverable application or system crash, or a catastrophic
+                failure that requires immediate attention.
+            </summary>
+        </member>
+        <member name="T:Jeff.Jones.JLogger8.Logger">
+            <summary>
+            Implementation for Logger used in production.
+            The class is sealed to prevent derived instances, which would defeat the purpose of a singleton.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_DaysToRetainLogs">
+            <summary>
+            Member variables
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.DEFAULT_DEBUG_LOG_OPTIONS">
+            <summary>
+            Default log settings
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.DEFAULT_ILOGGER_LOG_OPTIONS">
+            <summary>
+            Default value for logging levels when used as ILogger.  Changed by what is passed in at the constructor.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.DEFAULT_LOG_RETENTION">
+            <summary>
+            By default, how long we retain old debug log files.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_lstLogQueue">
+            <summary>
+            This is the queue that holds the log entries.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_LogWriteController">
+            <summary>
+            Timer used to manage the log entry items stack in writing to the debug log file.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_LogWritePeriod">
+            <summary>
+            The default frequency at which m_LogWriteController writes to the log file.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.LOG_CACHE_FREQUENCY">
+            <summary>
+            The default frequency at which m_LogWriteController writes to the log file.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_strDateLogFileCreated">
+            <summary>
+            Variable to hold the date-time String used when the file is created.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_LogPath">
+            <summary>
+            The path to the debug log file
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_strDebugLogFileName">
+            <summary>
+            The fully qualified file name being used.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_LogStarted">
+            <summary>
+            Flag to tell if StartLog was called already, so it can only try to start the log once.
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_objPadLock">
+            <summary>
+            Used for thread locking 
+            </summary>
+        </member>
+        <member name="F:Jeff.Jones.JLogger8.Logger.m_objPadLockWrite">
+            <summary>
+            Used for thread locking 
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.#ctor">
+            <summary>
+            Parameterless constructor required for a singleton
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.StartLog">
+            <summary>
+            Once the Logger instance is configured, this is used to start logging.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.StopLog">
+            <summary>
+            When the Logger instance is running, this is used to stop logging.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.Instance">
+            <summary>
+            The property that consumer code uses to access the singleton instance.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.LogFileName">
+            <summary>
+            Fully qualified file name for the log file.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.LogPath">
+            <summary>
+            Fully qualified path for the log file.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.DaysToRetainLogs">
+            <summary>
+            How many days that the Logger instance retains previous log files.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.DebugLogOptions">
+            <summary>
+            The debug flags that are active during the lifetime of the Logger instance
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.ILoggerOptions">
+            <summary>
+            The debug flags that are active during the lifetime of the Logger instance
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.EmailServer">
+            <summary>
+            The IP address or DNS name of the outgoing mail server
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.EmailLogonName">
+            <summary>
+            The logon name expected by the SMTP email server.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.EmailPassword">
+            <summary>
+            The logon password expected by the SMTP email server.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.SMTPPort">
+            <summary>
+            The port that the SMTP email server listens on.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.SendToAddresses">
+            <summary>
+            A list of email addresses that the Logger instance sends emails to if 
+            email is enabled.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.FromAddress">
+            <summary>
+            The email address to use with sending emails to indicate who the email is from.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.ReplyToAddress">
+            <summary>
+            The email address used to tell the recipient what address to reply to.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.EmailEnabled">
+            <summary>
+            True if sending email is enabled globally, false to turn it off globally.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.DBEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.DBServer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.DBUseAuthentication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.DBDatabase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.DBUserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.DBPassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.UseSSL">
+            <summary>
+            True if the email server requires using SSL, false if not.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.UseAzureFileStorage">
+            <summary>
+            True if using Azure Storage for the log file.
+            False if not.
+            A local file is used while the log is open.
+            When the log is closed, the log file is palced into Azure Storage.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.AzureStorageResourceID">
+            <summary>
+            The resource ID provided in the Azure portal
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.AzureStorageFileShareName">
+            <summary>
+            The file share name which houses remote directories and remote files.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.AzureStorageQueueName">
+            <summary>
+            The Azure Storage Queue name to which LogItem instances are sent.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.AzureStorageDirectory">
+            <summary>
+            The directory name where the remote file(s) are kept.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.AzureRemoteFileName">
+            <summary>
+            Name of the remote log file to save.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.SetEmailData(System.String,System.String,System.String,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.Boolean)">
+            <summary>
+            Method used to set the email sending configuration.
+            </summary>
+            <param name="emailServer">IP address or DNS name of the SMTP server.</param>
+            <param name="emailLogonName">Username expected by the SMTP server.</param>
+            <param name="emailPassword">Password expected by the SMTP server.</param>
+            <param name="smtpPort">Port number the SMTP port listens on.</param>
+            <param name="sendToAddresses">A List(String) of 1 to n addresses to send to.</param>
+            <param name="fromAddress">The address to show that this email is from.</param>
+            <param name="replyToAddress">The address to show as the address to reply to.</param>
+            <param name="useSSL">True if the SMTP server expects SSL, false if not.</param>
+            <returns>True if sent, false if not.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.SetDBConfiguration(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Int32,Jeff.Jones.JLogger8.LOG_TYPE)">
+            <summary>
+            
+            </summary>
+            <param name="dbServer"></param>
+            <param name="dbUserName"></param>
+            <param name="dbPassword"></param>
+            <param name="useWindowsAuthentication"></param>
+            <param name="dbLogEnabled"></param>
+            <param name="dbName"></param>
+            <param name="daysToRetainLogs"></param>
+            <param name="debugLogOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.SetAzureConfiguration(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            This sets the configuration if using Azure File Storage for the log file.
+            Note that for performance reasons, the active log file is kept locally
+            (see SetLogData method) and when closed, copied to the Azure file storage share.
+            The file name construction is based on the SetLogData method parameters.
+            </summary>
+            <param name="azureStorageResourceID">The connection string from the storage directory Access Keys</param>
+            <param name="azureStorageFileShareName">The URL provided on the fileshare properties page</param>
+            <param name="azureStorageDirectory">The storage directory name</param>
+            <param name="useAzureFileStorage">True to turn on the use of the Azure file storage matching the configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.SetAzureStorageQueueConfiguration(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="azureStorageResourceID"></param>
+            <param name="azureStorageQueueName"></param>
+            <param name="azureStorageDirectory"></param>
+            <param name="useAzureStorageQueueConfiguration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.SetLogData(System.String,System.String,System.Int32,Jeff.Jones.JLogger8.LOG_TYPE,System.String)">
+            <summary>
+            Method used to configure the Logger instance before starting the log..
+            </summary>
+            <param name="logPath">Path to where the log file should be written.  Do NOT provide a file name.  The filename is dynamcially built.</param>
+            <param name="logFileNamePrefix">A prefix to use for the log file name.</param>
+            <param name="daysToRetainLogs">How many days to retain prior day's logs.  Zero (0) indicates all logs are retained.</param>
+            <param name="debugLogOptions">The bitmask value to indicate what bits will be logged and what management bits are on.</param>
+            <param name="emergencyLogPrefixName">A prefix for the file name of a file that is used when the log file cannot be used, and data should be written.</param>
+            <returns>True if the log data is set, false if not.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.StartTimer">
+            <summary>
+            Starts the timer that controls writing to the log
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.ProcessLogQueue(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            This method is called to write any debug log items waiting in the queue
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.ProcessLogQueue">
+            <summary>
+            This method is called to write any debug log items waiting in the queue.
+            If the debug log file write fails, the log item is written to an alternate file.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.CloseLogFile">
+            <summary>
+            Closes the log file.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.WriteToLog(Jeff.Jones.JLogger8.LOG_TYPE,System.String,System.String)">
+            <summary>
+            Internal method that performs the log write.
+            </summary>
+            <param name="logType">The log option describing this log entry.</param>
+            <param name="mainMessage">A primary message describing the log entry.</param>
+            <param name="secondMessage">An optional second, or detail, message.</param>
+            <returns>True if written to the file or DB, false if not.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.WriteHeaderToLog">
+            <summary>
+            Creates the header line, the first line in the log.
+            </summary>
+            <returns>True if written, false if not.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.WriteDebugLog(Jeff.Jones.JLogger8.LOG_TYPE,System.Exception,System.String)">
+            <summary>
+            Method used to write exception information to the log.
+            This method writes a DebugLogItem instance to a queue, which is then emptied FIFO
+            on a separate thread so calling this method does not block 
+            main thread activity.  
+            </summary>
+            <param name="pExceptionType">Type of log entry to use.</param>
+            <param name="pExceptionToUse">Exception instance to analyze for log data.</param>
+            <param name="pOptionalLogMessage">Optional addition message besides what is in the Exception</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.WriteDebugLog(Jeff.Jones.JLogger8.LOG_TYPE,System.String,System.String)">
+            <summary>
+            Method used to write message information to the log.
+            This method writes a DebugLogItem instance to a queue, which is then emptied FIFO
+            on a separate thread so calling this method does not block 
+            main thread activity.  
+            </summary>
+            <param name="pExceptionType">Type of log entry to use.</param>
+            <param name="message">Message to write to the log</param>
+            <param name="secondaryMessage">Optional second message</param>
+            <returns>True if written to log queue, false if not.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.GetOperationalFlag(Jeff.Jones.JLogger8.LOG_TYPE)">
+            <summary>
+            
+            </summary>
+            <param name="pExceptionType"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Logger.IsDisposing">
+            <summary>
+            Tells the caller if this instance is already being disposed.
+            
+            </summary>
+            <returns>Returns true if the Object is being disposed, false if not.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.ProcessLogRetention">
+            <summary>
+            Method to look at the log files, and delete those older 
+            than "DaysToRetainLogs".  
+            
+            If "DaysToRetainLogs" is set as zero or less, then no 
+            logs are deleted.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.CreateDebugLogFile">
+            <summary>
+            Creates the debug log file.  The file has a specific naming convention.
+            Some system information is recorded in the first entries of the debug log.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.InitialWriteToDebugLogEntries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="logLevel"></param>
+            <param name="eventId"></param>
+            <param name="state"></param>
+            <param name="exception"></param>
+            <param name="formatter"></param>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
+            <summary>
+            
+            </summary>
+            <param name="logLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.ConvertILoggerBitsetToLogLevels(Jeff.Jones.JLogger8.LogLevelBitset)">
+            <summary>
+            Takes a LogLevelBitset value and converts it back to an array 
+            of LogLevel values.
+            </summary>
+            <param name="logLevelBitset">The ILogger bitset you want converted.</param>
+            <returns>LogLevel[] array.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.ConvertILoggerBitsetToLogLevel(Jeff.Jones.JLogger8.LogLevelBitset)">
+            <summary>
+            Takes a LogLevelBitset value and converts it to a LOG_TYPE bitset.
+            </summary>
+            <param name="logLevelBitset">The ILogger bitset you want converted.</param>
+            <returns>LogLevel bitset.</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.ConvertLogLevelsToILoggerBitset(Jeff.Jones.JLogger8.LOG_TYPE)">
+            <summary>
+            This static method takes an array of the LogLevel enum values the app should support 
+            and converts them to a bitset that determines if a log entry is called (thus reducing the 
+            overhead of a function call that is unwanted).
+            
+            The use of a bitset makes the decision to call a log method very low cost, as a bitset comparison
+            uses much less processing, with better speed, than any other way to compare a non-flags enum in an array of values.
+            </summary>
+            <param name="logLevel">LOG_TYPE bitset</param>
+            <returns>A LogLevelBitset bitset matching the array values</returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.BeginScope``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.Dispose">
+            <summary>
+            Implement the IDisposable.Dispose() method
+            Developers are supposed to call this method when done with this Object.
+            There is no guarantee when or if the GC will call it, so 
+            the developer is responsible to.  GC does NOT clean up unmanaged 
+            resources, such as COM objects, so we have to clean those up, too.
+            
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.Finalize">
+            <summary>
+            Explicit Finalize method.  The GC calls Finalize, if it is called.
+            There are times when the GC will fail to call Finalize, which is why it is up to 
+            the developer to call Dispose() from the consumer Object.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.Logger.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="T:Jeff.Jones.JLogger8.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.circlej">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.CLOSE_LOGFILE_UNHANDLED_TITLE">
+            <summary>
+              Looks up a localized string similar to Unable to close the debug log file properly due to an unexpected error..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LAST_LINE_IN_LOG">
+            <summary>
+              Looks up a localized string similar to Last line in the log.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_AVAIL_RAM">
+            <summary>
+              Looks up a localized string similar to Available Physical RAM=[{0}]..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_CLR_VERSION">
+            <summary>
+              Looks up a localized string similar to CLR Version=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_COMMAND_LINE">
+            <summary>
+              Looks up a localized string similar to Command line=[{0}]..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_COMPUTERDOMAINNAME">
+            <summary>
+              Looks up a localized string similar to Computer domain name=[{0}]..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_COMPUTERNAME">
+            <summary>
+              Looks up a localized string similar to Computer name=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_CURR_TZ">
+            <summary>
+              Looks up a localized string similar to Current Time Zone=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_CURR_TZ_DS">
+            <summary>
+              Looks up a localized string similar to Current Time Zone (Daylight Savings Name)=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_DNS_HOST_NAME">
+            <summary>
+              Looks up a localized string similar to DNS Host Name=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_DST">
+            <summary>
+              Looks up a localized string similar to Daylight Savings Time=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_FULLCOMPUTERNAME">
+            <summary>
+              Looks up a localized string similar to Full computer name=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_IS_IN_DOMAIN">
+            <summary>
+              Looks up a localized string similar to Computer is in a domain=[{0}]..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_IS_IN_DOMAIN1">
+            <summary>
+              Looks up a localized string similar to Computer is in a domain=[{0}]..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_NUM_PROCS">
+            <summary>
+              Looks up a localized string similar to Number of processors=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_OS_PLATFORM">
+            <summary>
+              Looks up a localized string similar to OS Platform=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_OS_SERVICE_PACK">
+            <summary>
+              Looks up a localized string similar to OS Service Pack=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_OS_VERSION">
+            <summary>
+              Looks up a localized string similar to OS Version=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_RUNNING_IN_IDE">
+            <summary>
+              Looks up a localized string similar to Running in the Visual Studio IDE=[{0}]..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_SYS_DIR">
+            <summary>
+              Looks up a localized string similar to System Directory=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.LOG_USR_INTERACTIVE">
+            <summary>
+              Looks up a localized string similar to User Interactive=[{0}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.PROCESSLOGRETENTION_FILEDELETE_MSG">
+            <summary>
+              Looks up a localized string similar to Unable to delete file [{0}]. User permissions for the service user account may need to be checked for the file. Error Message: [{1}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.PROCESSLOGRETENTION_UNHANDLED_MSG">
+            <summary>
+              Looks up a localized string similar to Unable to delete RMCMC log files older than [{0}] due to an unexpected error. Error Message: [{1}].
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.START_TIMER_ERROR">
+            <summary>
+              Looks up a localized string similar to Unable to start log processing timer to an unexpected error..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.UNABLE_TO_CREATE_DEBUG_LOG_TITLE">
+            <summary>
+              Looks up a localized string similar to Unable to create the debug log file due to an unexpected error..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.UNABLE_TO_OPEN_DEBUG_LOG_TITLE">
+            <summary>
+              Looks up a localized string similar to Unable to open the debug file for writing..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.UNABLE_TO_PROCESS_DEBUG_LOG_ITEM_TITLE">
+            <summary>
+              Looks up a localized string similar to Unable to process debug log items due to an unexpected error..
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.Properties.Resources.UNABLE_TO_PROCESS_QUEUE">
+            <summary>
+              Looks up a localized string similar to Unable to process log queue event to an unexpected error..
+            </summary>
+        </member>
+        <member name="T:Jeff.Jones.JLogger8.SendMailMgr">
+            <summary>
+            Class for sending email.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.SendMailMgr.#ctor">
+            <summary>
+            Default constructor.  If you use this constructor, populate the required values via their properties.
+            </summary>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.SendMailMgr.#ctor(System.String,System.String,System.String,System.Int32,System.Collections.Generic.List{System.String},System.String,System.String,System.Boolean)">
+            <summary>
+            Constructor to populate the necessary data.
+            If the list of "Send To" addresses is sent as a null object,
+            an empty list is created internally.
+            </summary>
+            <param name="emailServer">The name or IP address of the email server.</param>
+            <param name="emailLogonName">Email server logon name.</param>
+            <param name="emailPassword">Email server password.</param>
+            <param name="sMTPPort">Port the SMTP server listens on, port 25 by default</param>
+            <param name="sendToAddresses">A list of 1 to n addresses to send to.  At least one is required.</param>
+            <param name="fromAddress">The address the email is from.  Required.</param>
+            <param name="replyToAddress">The address a recipient would reply to.  Optional.</param>
+            <param name="useSSL">True if he email server requires SSL</param>
+        </member>
+        <member name="M:Jeff.Jones.JLogger8.SendMailMgr.SendEmail(System.String,System.Boolean)">
+            <summary>
+            Method to send an emial, using the values provided to connect to the email server, 
+            and the message body provided here.
+            
+            Throws an InvalidOperationException if thre are no Send To addresses, or one or more addresses 
+            are in an invalid format.
+            
+            Throws an ApplicationException with an inner SmtpException if there is an exception 
+            thrown when sending the email.
+            </summary>
+            <param name="messageBody">The text that goes in the message body.</param>
+            <param name="isHTML">True if the messageBody is in HTML format.</param>
+            <returns>True if the send is successful, false if not.</returns>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.SendMailMgr.EmailServer">
+            <summary>
+            DNS name or IP address of the SMTP email server.
+            Throws an ArgumentOutOfRangeException if the name is blank or null.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.SendMailMgr.EmailLogonName">
+            <summary>
+            Logon name required by the email server.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.SendMailMgr.EmailPassword">
+            <summary>
+            Password required by the email server.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.SendMailMgr.SMTPPort">
+            <summary>
+            The port the SMTP email server is listening on.  Default is 25.
+            Throws an ArgumentOutOfRangeException if less than or equal to zero.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.SendMailMgr.SendToAddresses">
+            <summary>
+            List of addresses to send to.  
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.SendMailMgr.FromAddress">
+            <summary>
+            The address that shows as "From" in the email.
+            Throws an ArgumentOutOfRangeException if the value is null or empty, or in an invalid format.
+            </summary>
+        </member>
+        <member name="P:Jeff.Jones.JLogger8.SendMailMgr.ReplyToAddress">
+            <summary>
+            The address that "reply to" uses for the email recipient.
+            Throws an ArgumentOutOfRangeException if the value is in an invalid format.
+            </summary>
+        </member>
+    </members>
+</doc>

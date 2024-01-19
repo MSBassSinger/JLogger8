@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="circlej" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\circlej.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CLOSE_LOGFILE_UNHANDLED_TITLE" xml:space="preserve">
+    <value>Unable to close the debug log file properly due to an unexpected error.</value>
+    <comment>Unable to close the debug log file properly due to an unexpected error.</comment>
+  </data>
+  <data name="LAST_LINE_IN_LOG" xml:space="preserve">
+    <value>Last line in the log</value>
+    <comment>Last line in the log</comment>
+  </data>
+  <data name="LOG_AVAIL_RAM" xml:space="preserve">
+    <value>Available Physical RAM=[{0}].</value>
+    <comment>Available Physical RAM=[{0}].</comment>
+  </data>
+  <data name="LOG_CLR_VERSION" xml:space="preserve">
+    <value>CLR Version=[{0}]</value>
+    <comment>CLR Version=[{0}]</comment>
+  </data>
+  <data name="LOG_COMMAND_LINE" xml:space="preserve">
+    <value>Command line=[{0}].</value>
+    <comment>Command line=[{0}].</comment>
+  </data>
+  <data name="LOG_COMPUTERDOMAINNAME" xml:space="preserve">
+    <value>Computer domain name=[{0}].</value>
+    <comment>Computer domain name=[{0}].</comment>
+  </data>
+  <data name="LOG_COMPUTERNAME" xml:space="preserve">
+    <value>Computer name=[{0}]</value>
+    <comment>Computer name=[{0}]</comment>
+  </data>
+  <data name="LOG_CURR_TZ" xml:space="preserve">
+    <value>Current Time Zone=[{0}]</value>
+    <comment>Current Time Zone=[{0}]</comment>
+  </data>
+  <data name="LOG_CURR_TZ_DS" xml:space="preserve">
+    <value>Current Time Zone (Daylight Savings Name)=[{0}]</value>
+    <comment>Current Time Zone (Daylight Savings Name)=[{0}]</comment>
+  </data>
+  <data name="LOG_DNS_HOST_NAME" xml:space="preserve">
+    <value>DNS Host Name=[{0}]</value>
+    <comment>DNS Host Name=[{0}]</comment>
+  </data>
+  <data name="LOG_DST" xml:space="preserve">
+    <value>Daylight Savings Time=[{0}]</value>
+    <comment>Daylight Savings Time=[{0}]</comment>
+  </data>
+  <data name="LOG_FULLCOMPUTERNAME" xml:space="preserve">
+    <value>Full computer name=[{0}]</value>
+    <comment>Full computer name=[{0}]</comment>
+  </data>
+  <data name="LOG_IS_IN_DOMAIN" xml:space="preserve">
+    <value>Computer is in a domain=[{0}].</value>
+    <comment>Computer is in a domain=[{0}].</comment>
+  </data>
+  <data name="LOG_IS_IN_DOMAIN1" xml:space="preserve">
+    <value>Computer is in a domain=[{0}].</value>
+    <comment>Computer is in a domain=[{0}].</comment>
+  </data>
+  <data name="LOG_NUM_PROCS" xml:space="preserve">
+    <value>Number of processors=[{0}]</value>
+    <comment>Number of processors=[{0}]</comment>
+  </data>
+  <data name="LOG_OS_PLATFORM" xml:space="preserve">
+    <value>OS Platform=[{0}]</value>
+    <comment>OS Platform=[{0}]</comment>
+  </data>
+  <data name="LOG_OS_SERVICE_PACK" xml:space="preserve">
+    <value>OS Service Pack=[{0}]</value>
+    <comment>OS Service Pack=[{0}]</comment>
+  </data>
+  <data name="LOG_OS_VERSION" xml:space="preserve">
+    <value>OS Version=[{0}]</value>
+    <comment>OS Version=[{0}]</comment>
+  </data>
+  <data name="LOG_RUNNING_IN_IDE" xml:space="preserve">
+    <value>Running in the Visual Studio IDE=[{0}].</value>
+    <comment>Running in the Visual Studio IDE=[{0}].</comment>
+  </data>
+  <data name="LOG_SYS_DIR" xml:space="preserve">
+    <value>System Directory=[{0}]</value>
+    <comment>System Directory=[{0}]</comment>
+  </data>
+  <data name="LOG_USR_INTERACTIVE" xml:space="preserve">
+    <value>User Interactive=[{0}]</value>
+    <comment>User Interactive=[{0}]</comment>
+  </data>
+  <data name="PROCESSLOGRETENTION_FILEDELETE_MSG" xml:space="preserve">
+    <value>Unable to delete file [{0}]. User permissions for the service user account may need to be checked for the file. Error Message: [{1}]</value>
+    <comment>Unable to delete file [{0}]. User permissions for the service user account may need to be checked for the file. Error Message: [{1}]</comment>
+  </data>
+  <data name="PROCESSLOGRETENTION_UNHANDLED_MSG" xml:space="preserve">
+    <value>Unable to delete RMCMC log files older than [{0}] due to an unexpected error. Error Message: [{1}]</value>
+    <comment>Unable to delete RMCMC log files older than [{0}] due to an unexpected error. Error Message: [{1}]</comment>
+  </data>
+  <data name="START_TIMER_ERROR" xml:space="preserve">
+    <value>Unable to start log processing timer to an unexpected error.</value>
+    <comment>Unable to start log processing timer to an unexpected error.</comment>
+  </data>
+  <data name="UNABLE_TO_CREATE_DEBUG_LOG_TITLE" xml:space="preserve">
+    <value>Unable to create the debug log file due to an unexpected error.</value>
+    <comment>Unable to create the debug log file due to an unexpected error.</comment>
+  </data>
+  <data name="UNABLE_TO_OPEN_DEBUG_LOG_TITLE" xml:space="preserve">
+    <value>Unable to open the debug file for writing.</value>
+    <comment>Unable to open the debug file for writing.</comment>
+  </data>
+  <data name="UNABLE_TO_PROCESS_DEBUG_LOG_ITEM_TITLE" xml:space="preserve">
+    <value>Unable to process debug log items due to an unexpected error.</value>
+    <comment>Unable to process debug log items due to an unexpected error.</comment>
+  </data>
+  <data name="UNABLE_TO_PROCESS_QUEUE" xml:space="preserve">
+    <value>Unable to process log queue event to an unexpected error.</value>
+    <comment>Unable to process log queue event to an unexpected error.</comment>
+  </data>
+</root>

@@ -1,0 +1,3 @@
+			String resourceID = "DefaultEndpointsProtocol=https;AccountName=jdjlogfiles;AccountKey=rHX4ESKI7exVm9BayRNJt2rgYx+U1dU+PkZ5FfooUScVtCjplDzP7KbWZVEYAJooh6rpuxQYFH8T+AStngyCXQ==;EndpointSuffix=core.windows.net";
+			String fileShareName = "jdjlogfileshare";
+			String directoryName = "jdjlogfiledirectory";

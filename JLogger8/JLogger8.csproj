@@ -1,0 +1,106 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+            <TargetFramework>net8.0</TargetFramework> 
+		<RootNamespace>Jeff.Jones.JLogger8</RootNamespace>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<SignAssembly>False</SignAssembly>
+		<AssemblyOriginatorKeyFile>JeffJonesDigiCert.pfx</AssemblyOriginatorKeyFile>
+		<PackageLicenseFile>License.txt</PackageLicenseFile>
+		<Authors>Jeff Jones</Authors>
+		<Company>Jeff Jones</Company>
+		<PackageId>Jeff.Jones.JLogger8</PackageId>
+		<Title>JLogger8 - Logging singleton with email, database, and Azure options</Title>
+		<Description>A singleton logging component.  Simple to use, lots of flexibility.  Writes to a user-specified log and path, and optionally sends email.  Can also write logs to a SQL Server database.  Allows storing log files in Azure File Storage.  Provides an ILogger interface and a bitmask matching ILogger options.</Description>
+		<PackageReleaseNotes>All requests for support must be sent by email to:
+    MSBassSinger@comcast.net
+The email MUST have "JLogger8" in the Subject line
+You MUST provide details that include code snippets of where the failure occured, and exact failure or exception messages.
+Demo code can be found at https://github.com/MSBassSinger/LoggingDemo8</PackageReleaseNotes>
+		<PackageTags>log logging logger .NET singleton throughput multithreaded</PackageTags>
+		<Copyright>Copyright © 2024 Jeff Jones.  All rights Reserved.</Copyright>
+		<ApplicationIcon>circlej.ico</ApplicationIcon>
+		<Win32Resource />
+		<AssemblyVersion>8.0.0</AssemblyVersion>
+		<FileVersion>8.0.0</FileVersion>
+		<Version>8.0.0</Version>
+		<PackageProjectUrl>https://github.com/MSBassSinger/JLogger8</PackageProjectUrl>
+		<PackageIcon>circlej.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<BaseOutputPath>bin\</BaseOutputPath>
+		<RepositoryUrl>https://github.com/MSBassSinger/JLogger8</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>C:\Projects\JLogger8\JLogger8\JLogger8.xml</DocumentationFile>
+		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DebugType>embedded</DebugType>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="ILogger.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="SignNuGetPackage.bat" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="License.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Azure.Storage.Common" Version="12.18.1" />
+		<PackageReference Include="Azure.Storage.Files.Shares" Version="12.17.1" />
+		<PackageReference Include="Jeff.Jones.JHelpers8" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="circlej.png">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Update="DB\DBLog.sql">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DB\spDebugLogDelete.sql">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DB\spDebugLogInsert.sql">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="README.md">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
