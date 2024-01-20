@@ -17,10 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jeff.Jones.JLogger8" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JLogger8\JLogger8.csproj" />
   </ItemGroup>
 
 </Project>
