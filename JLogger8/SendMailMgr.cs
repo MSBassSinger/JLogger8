@@ -115,10 +115,10 @@ namespace Jeff.Jones.JLogger8
         }
 
         /// <summary>
-        /// Method to send an emial, using the values provided to connect to the email server, 
+        /// Method to send an email, using the values provided to connect to the email server, 
         /// and the message body provided here.
         /// 
-        /// Throws an InvalidOperationException if thre are no Send To addresses, or one or more addresses 
+        /// Throws an InvalidOperationException if there are no Send To addresses, or one or more addresses 
         /// are in an invalid format.
         /// 
         /// Throws an ApplicationException with an inner SmtpException if there is an exception 
@@ -530,9 +530,6 @@ namespace Jeff.Jones.JLogger8
 
                 }
             }
-
-
-
         }
     }
 }

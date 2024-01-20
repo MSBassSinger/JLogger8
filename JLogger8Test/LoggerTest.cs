@@ -29,8 +29,7 @@ namespace JLogger8Test
 
 			List<String> sendToAddresses = new List<String>();
 
-			sendToAddresses.Add("MSBassSinger@comcast.net");
-			sendToAddresses.Add("PamJones4@comcast.net");
+			sendToAddresses.Add("YourEmailAddress");
 
 			response = Logger.Instance.SetEmailData("smtp.host.net",
 											"user@host.net",
